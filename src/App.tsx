@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginPage from './pages/loginPage';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/store';
+import HomePage from './pages/homePage';
 
 const App: React.FC = () => {
   const token = useSelector((state: RootState) => state.auth.token);
@@ -13,7 +14,8 @@ const App: React.FC = () => {
         {!token ? (
           <Route path='*' element={<LoginPage />} />
         ) : (
-          <Route path='/login' element={<Navigate to='/' replace />} />
+          <><Route path='/login' element={<Navigate to='/' replace />} />
+            <Route path='/' element={<HomePage />} /></>
         )}
       </Routes>
     </Router>
