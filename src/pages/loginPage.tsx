@@ -41,12 +41,29 @@ const LoginPage: React.FC = () => {
         }
     }
     return (
-        <Container maxWidth='sm' >
-            <Typography variant='h4' style={{ marginTop: '20px', marginBottom: '20px' }}>Login</Typography>
+        <Container maxWidth='sm'>
+            <Typography
+                variant='h4'
+                style={{ marginTop: '20px', marginBottom: '20px' }}>
+                Login
+            </Typography>
             {error && <Alert severity='error' style={{ marginBottom: '20px' }}>{error}</Alert>}
-            <TextField label="Username" fullWidth margin='normal' value={username} onChange={(e) => setUsername(e.target.value)} />
-            <TextField label="password" type='password' fullWidth margin='normal' value={password} onChange={(e) => setPassword(e.target.value)} />
-            <Button variant='contained' color='primary' onClick={handleLogin} style={{ marginTop: '20px' }}>Login</Button>
+            <TextField
+                label="Username"
+                fullWidth margin='normal'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)} />
+            <TextField
+                label="password"
+                type='password'
+                fullWidth
+                margin='normal'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} />
+            <Button
+                variant='contained'
+                color='primary'
+                onClick={handleLogin} style={{ marginTop: '20px' }}>Login</Button>
         </Container>
     )
 }

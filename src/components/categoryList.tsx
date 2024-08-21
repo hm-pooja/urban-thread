@@ -11,7 +11,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
         navigate(`/category/${category}`);
     }
     return (
-        <Grid>
+        <Grid container spacing={2}>
             {categories.map((category) => (
                 <Grid>
                     <Chip
