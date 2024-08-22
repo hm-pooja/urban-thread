@@ -46,13 +46,13 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
                     </CardContent>
                 </Grid>
                 <Grid item xs={3} sx={{ display: 'flex', alignItems: 'center' }}>
-                    <IconButton onClick={handleDecrease}>
+                    <IconButton onClick={handleDecrease} aria-label="decrease quantity">
                         <Remove />
                     </IconButton>
                     <Typography variant='body2' display="inline" sx={{ marginX: 1 }}>
                         {item.quantity}
                     </Typography>
-                    <IconButton onClick={handleIncrease}>
+                    <IconButton onClick={handleIncrease} aria-label="increase quantity">
                         <Add />
                     </IconButton>
                 </Grid>

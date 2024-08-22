@@ -8,6 +8,7 @@ import ProductDetailPage from './pages/productDetailPage';
 import CategoryPage from './pages/categoryPage';
 import CartPage from './pages/cartPage';
 import SuccessPage from './pages/successPage';
+import ProfilePage from './pages/profilePage';
 
 const App: React.FC = () => {
   const token = useSelector((state: RootState) => state.auth.token);
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <>
           <Route path='/login' element={<Navigate to='/' replace />} />
             <Route path='/' element={<HomePage />} />
+            <Route path='/profile' element={<ProfilePage />} />
             <Route path = '/product/:productId' element={<ProductDetailPage />} />
             <Route path = '/category/:categoryName' element={<CategoryPage />} />
             <Route path = '/cart' element={<CartPage />} />

@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/slices/cartSlice";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography } from "@mui/material";
 import Header from "../components/header";
 
 const ProductDetailPage: React.FC = () => {

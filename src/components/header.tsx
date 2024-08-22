@@ -6,7 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../redux/slices/authSlice";  // Ensure you have this action
 import { useState } from "react";
 
-const Header: React.FC = () => {
+
+interface HeaderProps {
+    showCartIcon?: Boolean;
+}
+const Header: React.FC<HeaderProps> = ({ showCartIcon = true }) => {
     const cartCount = useSelector((state: RootState) => state.cart.items.length);
     const username = useSelector((state: RootState) => state.auth.username);
     const navigate = useNavigate();
@@ -22,9 +26,14 @@ const Header: React.FC = () => {
         setPopupMenu(null);
     };
 
+    const handleProfileClick = () => {
+        navigate("/profile");
+        setPopupMenu(null); 
+    };
+
     const handleLogout = () => {
         dispatch(logout());
-        navigate('/login'); 
+        navigate('/login');
         handleMenuClose();
     };
 
@@ -35,11 +44,14 @@ const Header: React.FC = () => {
                     Urban Thread
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <IconButton color="inherit" onClick={() => navigate('/cart')}>
-                        <Badge badgeContent={cartCount} color='secondary'>
-                            <ShoppingCart />
-                        </Badge>
-                    </IconButton>
+                    {showCartIcon && (
+                        <IconButton color="inherit" onClick={() => navigate('/cart')}>
+                            <Badge badgeContent={cartCount} color='secondary'>
+                                <ShoppingCart data-testId = 'ShoppingCartIcon'/>
+                            </Badge>
+                        </IconButton>
+                    )}
+
                     <IconButton color='inherit' onClick={handleMenuOpen}>
                         <AccountCircle />
                         {username && (
@@ -61,7 +73,7 @@ const Header: React.FC = () => {
                             horizontal: 'right',
                         }}
                     >
-                        <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
+                        <MenuItem onClick={handleProfileClick}>Profile</MenuItem>
                         <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                 </Box>

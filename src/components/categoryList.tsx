@@ -13,7 +13,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
     return (
         <Grid container spacing={2}>
             {categories.map((category) => (
-                <Grid>
+                <Grid item key = {category}>
                     <Chip
                         label={category}
                         onClick={() => handleCategoryClick(category)}
