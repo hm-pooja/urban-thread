@@ -25,10 +25,10 @@ const CategoryPage: React.FC = () => {
     return (
         <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Header />
-            <Typography variant='h4' style={{ marginTop: '20px' }}>
+            <Typography variant='h4' sx={{ marginTop: '20px', paddingX: 4 }}>
                 {categoryName?.toUpperCase()}
             </Typography>
-            <Grid container spacing={2} style={{ marginTop: '20px' }}>
+            <Grid container spacing={2} sx={{ marginTop: '20px', paddingX: 4 }}>
                 {products.map(product => (
                     <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
                         <ProductCard product={product} />
