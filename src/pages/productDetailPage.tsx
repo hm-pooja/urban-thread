@@ -56,7 +56,7 @@ const ProductDetailPage: React.FC = () => {
                     <Typography variant="h6">Image not available</Typography>
                 )}
             </Box>
-            <Grid container spacing={4}>
+            <Grid container spacing={4} sx={{ paddingX: 2 }}>
                 <Grid item xs={12} md={8}>
                     <Typography variant='h4' sx={{ marginBottom: 2 }}>
                         {product.title}
