@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ showCartIcon = true }) => {
                     {showCartIcon && (
                         <IconButton color="inherit" onClick={() => navigate('/cart')}>
                             <Badge badgeContent={cartCount} color='secondary'>
-                                <ShoppingCart />
+                                <ShoppingCart data-testId = 'ShoppingCartIcon'/>
                             </Badge>
                         </IconButton>
                     )}

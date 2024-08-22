@@ -109,11 +109,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 </Typography>
                 {cartItem ? (
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <IconButton onClick={handleDecrease} aria-label='add to cart' color="primary">
+                        <IconButton onClick={handleDecrease} aria-label='decrease quantity' color="primary">
                             <Remove />
                         </IconButton>
                         <Typography>{cartItem.quantity}</Typography>
-                        <IconButton onClick={handleIncrease} aria-label='add to cart' color="primary">
+                        <IconButton onClick={handleIncrease} aria-label='increase quantity' color="primary">
                             <Add />
                         </IconButton>
                     </Box>
