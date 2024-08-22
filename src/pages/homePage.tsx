@@ -4,7 +4,7 @@ import { loadCategories } from "../redux/slices/categorySlice";
 import { loadProducts } from '../redux/slices/productSlice';
 import { RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ProductCard from '../components/productCard';
 import CategoryList from "../components/categoryList";
 import axios from "axios";

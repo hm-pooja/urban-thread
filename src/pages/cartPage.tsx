@@ -20,7 +20,7 @@ const CartPage: React.FC = () => {
     }
     return (
         <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-            <Header />
+            <Header showCartIcon={false}/>
             <Box sx={{ marginY: 3, paddingX: 4 }}>
                 <Typography variant='h4' style={{ marginTop: '20px' }}>
                     Cart: {totalQuantity} {totalQuantity === 1 ? 'item' : 'items'}

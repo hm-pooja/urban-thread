@@ -1,8 +1,9 @@
-import { AddShoppingCart } from "@mui/icons-material";
+import { Add, AddShoppingCart, Remove } from "@mui/icons-material";
 import { Box, Card, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../redux/slices/cartSlice";
+import { addToCart, removeFromCart, updateQuantity } from "../redux/slices/cartSlice";
+import { RootState } from "../redux/store";
 
 interface Product {
     id: number;
@@ -21,9 +22,27 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const cartItem = useSelector((state: RootState) => 
+        state.cart.items.find((item) => item.product.id === product.id)
+    ) 
+
     const handleAddCart = (e: React.MouseEvent) => {
         e.stopPropagation();
         dispatch(addToCart(product))
+    }
+
+    const handleIncrease = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        dispatch(updateQuantity({ id: product.id, quantity: cartItem!.quantity + 1 }));
+    }
+
+    const handleDecrease = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (cartItem!.quantity > 1) {
+            dispatch(updateQuantity({ id: product.id, quantity: cartItem!.quantity - 1 }));
+        } else {
+            dispatch(removeFromCart({ id: product.id }));
+        }
     }
 
     const handleCardClick = () => {
@@ -44,7 +63,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 }
             }}
         >
-            <Box sx={{ flexGrow: 1, padding: 2 }}>
+            <Box sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center', flexGrow: 1, padding: 2
+            }}>
                 <CardMedia
                     component='img'
                     image={product.image}
@@ -57,7 +80,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                     }}
                 />
             </Box>
-            <CardContent sx={{ padding: 2, flexGrow: 1}}>
+            <CardContent sx={{ padding: 2, flexGrow: 1 }}>
                 <Typography
                     variant="subtitle1"
                     sx={{
@@ -84,11 +107,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 <Typography variant="body2" color='text.secondary'>
                     ${product.price}
                 </Typography>
-                <IconButton onClick={handleAddCart} aria-label = 'add to cart' color="primary">
-                    <AddShoppingCart />
-                </IconButton>
+                {cartItem ? (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <IconButton onClick={handleDecrease} aria-label='add to cart' color="primary">
+                            <Remove />
+                        </IconButton>
+                        <Typography>{cartItem.quantity}</Typography>
+                        <IconButton onClick={handleIncrease} aria-label='add to cart' color="primary">
+                            <Add />
+                        </IconButton>
+                    </Box>
+                ) : (
+                    <IconButton onClick={handleAddCart} aria-label='add to cart' color="primary">
+                        <AddShoppingCart />
+                    </IconButton>
+
+                )}
+
             </Box>
         </Card>
     );
 }
 export default ProductCard;
+
